@@ -1,0 +1,35 @@
+import { user } from "@nextui-org/react";
+import { getTasks } from "../../../../../actions/getTasks";
+import TaskOneCard from "@/components/TaskOneCard";
+import { useCurrentUser } from "@/hooks/use-current-user";
+
+export default async function Vifaa() {
+  const tasks = await getTasks("vifaa");
+
+  return (
+    <div className="container  p-6 mb-8 ">
+      <div className="bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% rounded-tl-xl rounded-tr-xl p-6 mb-6 text-center font-bold text-2xl text-white">
+        {" "}
+        Vifaa na Mapambo
+        <p className="text-sm text-white font-normal">
+          Vyovyote ambavyo bike yako inahitaji{" "}
+        </p>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-6 ">
+        <div className="lg:col-span-12 col-span-1">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 ">
+            {tasks.map((task, index) => (
+              <TaskOneCard
+                key={index}
+                videoURL={task.videoURL}
+                thumbnailURL={task.thumbnailURL}
+                completed={false}
+                taskId={""}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
